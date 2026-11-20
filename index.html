@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ders Notları</title>
+<style>
+  :root {
+    --bg: #faf9f5; --kart: #ffffff; --yazi: #1f1d1a; --soluk: #6b675f; --cizgi: #e7e3da;
+    --mor: #6d4bd8; --mor-acik: #efeafc; --yesil: #2f7d5b; --yesil-acik: #e6f3ec; --turuncu: #b8641f; --turuncu-acik: #fbefe3;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17161a; --kart: #211f25; --yazi: #ece9f2; --soluk: #a29eab; --cizgi: #34313a;
+      --mor: #a48bf5; --mor-acik: #2b2540; --yesil: #6cc79c; --yesil-acik: #1d2e26; --turuncu: #e8a265; --turuncu-acik: #33271c;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--yazi); font: 18px/1.55 -apple-system, BlinkMacSystemFont, "DM Sans", "Segoe UI", sans-serif; }
+  .kap { max-width: 1060px; margin: 0 auto; padding: 0 16px; }
+  header { border-bottom: 1px solid var(--cizgi); background: var(--kart); }
+  header .kap { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 14px; padding-bottom: 14px; }
+  .logo { font-weight: 700; font-size: 20px; letter-spacing: -.01em; }
+  .logo span { color: var(--mor); }
+  nav a { color: var(--soluk); text-decoration: none; margin-left: 18px; font-size: 16px; }
+  nav a:hover { color: var(--mor); }
+  .kahraman { padding: 48px 0 28px; }
+  .kahraman h1 { font-size: clamp(30px, 5vw, 46px); line-height: 1.12; margin: 0 0 12px; letter-spacing: -.02em; }
+  .kahraman p { color: var(--soluk); max-width: 680px; margin: 0; }
+  .dersler { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; margin: 28px 0 8px; }
+  .ders { background: var(--kart); border: 1px solid var(--cizgi); border-radius: 14px; padding: 22px; }
+  .etiket { display: inline-block; font-size: 13px; font-weight: 600; padding: 3px 10px; border-radius: 99px; }
+  .e-mor { background: var(--mor-acik); color: var(--mor); }
+  .e-yesil { background: var(--yesil-acik); color: var(--yesil); }
+  .e-turuncu { background: var(--turuncu-acik); color: var(--turuncu); }
+  .ders h2 { margin: 10px 0 6px; font-size: 24px; }
+  .ders p { margin: 0; color: var(--soluk); font-size: 16px; }
+  h3.baslik { font-size: 22px; margin: 40px 0 12px; }
+  .agac { background: var(--kart); border: 1px solid var(--cizgi); border-radius: 14px; overflow: hidden; }
+  details { border-top: 1px solid var(--cizgi); }
+  details:first-child { border-top: none; }
+  summary { list-style: none; cursor: pointer; padding: 16px 20px; display: flex; align-items: center; gap: 14px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::before { content: "›"; color: var(--soluk); font-size: 22px; width: 12px; transition: transform .15s; }
+  details[open] > summary::before { transform: rotate(90deg); }
+  .no { font-variant-numeric: tabular-nums; color: var(--mor); font-weight: 700; min-width: 74px; }
+  .konu { font-weight: 600; flex: 1; }
+  .durum { font-size: 13px; color: var(--soluk); }
+  .icerik { padding: 0 20px 18px 66px; display: grid; gap: 10px; }
+  .oge { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1px solid var(--cizgi); border-radius: 10px; text-decoration: none; color: inherit; background: var(--bg); }
+  .oge:hover { border-color: var(--mor); }
+  .oge .tur { width: 92px; flex-shrink: 0; }
+  .oge .ad { flex: 1; }
+  .oge .ok { color: var(--soluk); }
+  .yakinda { opacity: .55; pointer-events: none; }
+  .not { margin: 28px 0 48px; padding: 16px 20px; border-left: 4px solid var(--mor); background: var(--mor-acik); border-radius: 0 10px 10px 0; font-size: 16px; }
+  footer { border-top: 1px solid var(--cizgi); padding: 22px 0 40px; color: var(--soluk); font-size: 14px; }
+  @media (max-width: 600px) {
+    nav { display: none; }
+    .icerik { padding-left: 20px; }
+    .oge { flex-wrap: wrap; }
+    .no { min-width: 0; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="kap">
+    <div class="logo">Tıbbi Veri <span>Ders Notları</span></div>
+    <nav><a href="#istatistik">İstatistik</a><a href="#vta">Veri Türleri</a><a href="#hakkinda">Hakkında</a></nav>
+  </div>
+</header>
+
+<main class="kap">
+  <section class="kahraman">
+    <span class="etiket e-mor">2026–2027 Güz · TASLAK</span>
+    <h1>İstatistiği sezgiyle öğrenmek</h1>
+    <p>Tıbbi Veri İşleme Teknikerliği derslerinin etkileşimli içerikleri. Her bölüm önce kavramı (İstatistik ve Raporlama), sonra aynı kavramın Excel uygulamasını (Veri Türleri ve Analizi) içerir.</p>
+  </section>
+
+  <div class="dersler">
+    <div class="ders">
+      <span class="etiket e-mor">Kuram ve raporlama</span>
+      <h2>İstatistik ve Raporlama</h2>
+      <p>Etkileşimli ders sayfaları: tahmin et, dene, gör. Doğru rapor cümlesi kurmayı hedefler.</p>
+    </div>
+    <div class="ders">
+      <span class="etiket e-yesil">Excel uygulaması</span>
+      <h2>Veri Türleri ve Analizi</h2>
+      <p>Kendini denetleyen Excel çalışma kitapları: formülü yaz, ✔ işaretini gör.</p>
+    </div>
+  </div>
+
+  <h3 class="baslik" id="istatistik">Bölümler</h3>
+  <div class="agac">
+    <details>
+      <summary><span class="no">Bölüm 5</span><span class="konu">Merkezi eğilim ölçüleri</span><span class="durum">2 içerik</span></summary>
+      <div class="icerik">
+        <a class="oge yakinda"><span class="tur"><span class="etiket e-mor">Ders</span></span><span class="ad">Ortalama, ortanca, mod</span><span class="ok">→</span></a>
+        <a class="oge yakinda"><span class="tur"><span class="etiket e-yesil">Excel</span></span><span class="ad">Bölüm 5 çalışma kitabı</span><span class="ok">↓</span></a>
+      </div>
+    </details>
+    <details open>
+      <summary><span class="no">Bölüm 6</span><span class="konu">Yayılım ölçüleri</span><span class="durum">3 içerik</span></summary>
+      <div class="icerik">
+        <a class="oge" href="istatistik/bolum-06-yayilim.html"><span class="tur"><span class="etiket e-mor">Ders</span></span><span class="ad">Standart sapma ve varyans — etkileşimli ders</span><span class="ok">→</span></a>
+        <a class="oge yakinda"><span class="tur"><span class="etiket e-yesil">Excel</span></span><span class="ad">Bölüm 6 çalışma kitabı (öğrenci)</span><span class="ok">↓</span></a>
+        <a class="oge yakinda"><span class="tur"><span class="etiket e-turuncu">Veri</span></span><span class="ad">Dummy (kurgusal) hastane verisi — 100 hasta (.xlsx / .csv)</span><span class="ok">↓</span></a>
+      </div>
+    </details>
+    <details>
+      <summary><span class="no">Bölüm 7</span><span class="konu">Dağılım biçimi, standart puan ve rapor okuma</span><span class="durum">hazırlanıyor</span></summary>
+      <div class="icerik">
+        <a class="oge yakinda"><span class="tur"><span class="etiket e-mor">Ders</span></span><span class="ad">Histogram, çarpıklık ve z puanı — etkileşimli ders</span><span class="ok">→</span></a>
+        <a class="oge yakinda"><span class="tur"><span class="etiket e-yesil">Excel</span></span><span class="ad">Bölüm 7 çalışma kitabı (öğrenci)</span><span class="ok">↓</span></a>
+      </div>
+    </details>
+  </div>
+
+  <div class="not" id="hakkinda">
+    Bu sayfa bir <strong>taslaktır</strong>: Cloudflare Pages'te yayımlanınca adres <strong>proje-adı.pages.dev</strong> biçiminde olur. Sönük renkli öğeler henüz eklenmemiş içeriklerdir. Bölüm 6'daki “Ders” bağlantısı gerçek sayfayı açar.
+  </div>
+</main>
+
+<footer>
+  <div class="kap">Hüseyin Şatırer · Süleyman Demirel Üniversitesi · İçerikler eğitim amaçlıdır; veriler kurgusaldır. · CC BY-NC 4.0</div>
+</footer>
+</body>
+</html>
